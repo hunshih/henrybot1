@@ -1,0 +1,25 @@
+{
+  "name": "henryjuniorbot1",
+  "version": "0.0.1",
+  "description": "A chat bot",
+  "engines": {
+    "node": "5.9.1"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "httpdispatcher": "2.15.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hunshih/henrybot1"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "httpdispatcher"
+  ],
+  "license": "MIT"
+}
