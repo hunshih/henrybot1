@@ -10,7 +10,6 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "express": "2.15.1"
   },
   "repository": {
     "type": "git",
@@ -18,8 +17,7 @@
   },
   "keywords": [
     "node",
-    "heroku",
-    "express"
+    "heroku"
   ],
   "license": "MIT"
 }
