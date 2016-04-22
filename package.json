@@ -10,8 +10,7 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "express": "2.15.1",
-    "path": "2.15.1"
+    "express": "2.15.1"
   },
   "repository": {
     "type": "git",
