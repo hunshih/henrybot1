@@ -10,7 +10,8 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "httpdispatcher": "1.0.0"
+    "express": "2.15.1",
+    "path": "2.15.1"
   },
   "repository": {
     "type": "git",
@@ -19,7 +20,7 @@
   "keywords": [
     "node",
     "heroku",
-    "httpdispatcher"
+    "express"
   ],
   "license": "MIT"
 }
