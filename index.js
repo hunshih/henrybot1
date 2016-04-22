@@ -26,6 +26,7 @@ app.get('/webhook', function(req,res){
 });
 
 app.post('/webhook', function(req, res) {
+    alert("yo");
     res.writeHead(200, {'Content-Type': 'text/plain'});
     res.end('Got Message!');
 });
