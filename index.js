@@ -30,7 +30,7 @@ app.get('/webhook', function(req,res){
 });
 
 app.post('/webhook', function(req, res) {
-    postRequest();
+    console.log('Got message from Facebook!');
 });
 
 function postRequest() {
