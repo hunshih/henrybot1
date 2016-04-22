@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "A chat bot",
   "engines": {
-    "node": "3.7.3"
+    "node": "4.4.3"
   },
   "main": "index.js",
   "scripts": {
