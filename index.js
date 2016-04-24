@@ -23,8 +23,9 @@ app.get('/webhook', function(req,res){
 
 app.post('/webhook', function(req, res) {
     //res.send('Webhook POST working');
-    console.log('Does it work DOE?');
-    postRequest();
+    var msg = JSON.parse(req);
+    console.log(msg.entry.messaging.message.text);
+    //postRequest();
 });
 
 app.post('/post', function(req, res) {
