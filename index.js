@@ -22,10 +22,10 @@ app.get('/webhook', function(req,res){
 });
 
 app.post('/webhook', function(req, res) {
-    console.log('Got message from Facebook!');
+    res.send('Webhook POST working');
 });
 
-app.post('/test', function(req, res) {
+app.post('/post', function(req, res) {
     res.send('Test POST working');
 });
 
