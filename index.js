@@ -31,7 +31,7 @@ app.post('/webhook', function(req, res) {
 });
 
 app.post('/post', function(req, res) {
-    res.send('Test POST working');
+    res.send(req.body);
 });
 
 app.get('/get', function(req, res) {
