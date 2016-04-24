@@ -13,10 +13,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //Page token
 var token = 'CAADezUPr1f4BAAJK2uB7UZCDm5eJtKE5xLdP5FZCFzHoNM7MQHfKDXdHHci0qFj3aGIhHBSOsxBfGudFu7jhvXRzVBK284dD7rr0tuveFjtBEMxDqVwDOBiSJM7SytpXGJrY2i3wlZBZAZCxlV4GzbwXtuGfmlkhD6xituWUHLu64saY8rIZAm6FSqZC9YRqRlcJwMIPTus5gZDZD';
 
-app.configure(function(){
-  app.use(express.bodyParser());
-});
-
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
