@@ -25,6 +25,14 @@ app.post('/webhook', function(req, res) {
     console.log('Got message from Facebook!');
 });
 
+app.post('/test', function(req, res) {
+    res.send('Test POST working');
+});
+
+app.get('/get', function(req, res) {
+    res.send('Test GET working');
+});
+
 function postRequest() {
     var postAddress = 'https://graph.facebook.com/v2.6/me/messages?access_token=' + token;
     request.post(
