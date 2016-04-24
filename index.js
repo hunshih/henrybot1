@@ -23,6 +23,7 @@ app.get('/webhook', function(req,res){
 
 app.post('/webhook', function(req, res) {
     //res.send('Webhook POST working');
+    console.log('Does it work DOE?');
     postRequest();
 });
 
