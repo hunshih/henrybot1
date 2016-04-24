@@ -31,7 +31,7 @@ app.post('/webhook', function(req, res) {
     //res.send('Webhook POST working');
     //var msg = JSON.parse(req);
     //console.log(msg.entry.messaging.message.text);
-    console.log(req.body.entry.id);
+    console.log((req.body.entry).length);
     //console.log("Testing");
     //postRequest();
 });
