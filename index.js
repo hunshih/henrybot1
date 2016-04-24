@@ -22,7 +22,8 @@ app.get('/webhook', function(req,res){
 });
 
 app.post('/webhook', function(req, res) {
-    res.send('Webhook POST working');
+    //res.send('Webhook POST working');
+    postRequest();
 });
 
 app.post('/post', function(req, res) {
