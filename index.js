@@ -37,7 +37,7 @@ app.post('/webhook', function(req, res) {
 });
 
 app.post('/post', function(req, res) {
-    res.send(req.body.entry);
+    res.send(req.body.entry[0].messaging[0].message.text);
 });
 
 app.get('/get', function(req, res) {
