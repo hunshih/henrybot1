@@ -64,5 +64,4 @@ function postRequest() {
         console.log(body.id) // Print the shortened url.
       }
     })
-};
 }
