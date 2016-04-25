@@ -46,6 +46,10 @@ app.get('/get', function(req, res) {
     res.send('Test GET working');
 });
 
+app.post('/testingpost', function(req, res) {
+    res.send(req.body.entry[0].messaging[0].message.text);
+});
+
 var postAddress = 'https://graph.facebook.com/v2.6/me/messages?access_token=' + token;
 
 var options = {
@@ -60,8 +64,8 @@ var options = {
 
 function postRequest() {
     request(options, function (error, response, body) {
-      if (!error && response.statusCode == 200) {
-        console.log(body.id) // Print the shortened url.
+      if (error) {
+        console.log(error) // Print the shortened url.
       }
     })
 }
