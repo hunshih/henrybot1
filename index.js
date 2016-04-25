@@ -66,7 +66,7 @@ function postRequest(input) {
   json: { "recipient": 
         { "id": input },
      "message":
-        { "text": "YOOO"}
+        { "text": "Hey Keanu :3"}
     }
 };
     request(options, function (error, response, body) {
