@@ -31,9 +31,14 @@ app.post('/webhook', function(req, res) {
     //res.send('Webhook POST working');
     //var msg = JSON.parse(req);
     //console.log(msg.entry.messaging.message.text);
-    console.log(req.body.entry[0].messaging[0].message.text);  
-    var sender = req.body.entry[0].messaging[0].sender.id;
-    postRequest(sender);
+    if(req.body.entry[0].messaging[0].message.text){
+        console.log(req.body.entry[0].messaging[0].message.text);  
+        var sender = req.body.entry[0].messaging[0].sender.id;
+        postRequest(sender);
+    }
+    else{
+        console.log("It's somethin else");
+    }
     res.send("done");
     //console.log("Testing");
     //postRequest();
