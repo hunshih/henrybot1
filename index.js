@@ -32,7 +32,8 @@ app.post('/webhook', function(req, res) {
     //var msg = JSON.parse(req);
     //console.log(msg.entry.messaging.message.text);
     console.log(req.body.entry[0].messaging[0].message.text);  
-    postRequest();
+    var sender = req.body.entry[0].messaging[0].sender.id;
+    postRequest(sender);
     res.send("done");
     //console.log("Testing");
     //postRequest();
@@ -50,22 +51,25 @@ app.post('/testingpost', function(req, res) {
     res.send(req.body.entry[0].messaging[0].message.text);
 });
 
-var postAddress = 'https://graph.facebook.com/v2.6/me/messages?access_token=' + token;
+function postRequest(input) {
+    console.log('id is: ' + input);
+    var postAddress = 'https://graph.facebook.com/v2.6/me/messages?access_token=' + token;
 
-var options = {
+    var options = {
   uri: postAddress,
   method: 'POST',
   json: { "recipient": 
-        { "phone_number": "+1(734)249-0075" },
+        { "id": input },
      "message":
         { "text": "YOOO"}
     }
 };
-
-function postRequest() {
     request(options, function (error, response, body) {
       if (error) {
         console.log(error) // Print the shortened url.
+      }
+        if (response) {
+        console.log(response) // Print the shortened url.
       }
     })
 }
