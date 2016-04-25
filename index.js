@@ -46,19 +46,23 @@ app.get('/get', function(req, res) {
     res.send('Test GET working');
 });
 
-function postRequest() {
-    var postAddress = 'https://graph.facebook.com/v2.6/me/messages?access_token=' + token;
-    request.post(
-        postAddress,
-    { "recipient": 
+var postAddress = 'https://graph.facebook.com/v2.6/me/messages?access_token=' + token;
+
+var options = {
+  uri: postAddress,
+  method: 'POST',
+  json: { "recipient": 
         { "phone_number": "+1(734)249-0075" },
      "message":
         { "text": "YOOO"}
-    },
-    function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-            console.log(body)
-        }
     }
-);
+};
+
+function postRequest() {
+    request(options, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        console.log(body.id) // Print the shortened url.
+      }
+    })
+};
 }
