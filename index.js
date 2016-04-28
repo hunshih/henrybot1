@@ -77,7 +77,7 @@ function postRequest(input) {
           console.log('failure to send to clients');
       }
         if (response) {
-        //console.log(response) // Print the shortened url.
+        console.log(response) // Print the shortened url.
       }
     })
 }
