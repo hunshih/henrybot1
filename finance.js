@@ -22,11 +22,14 @@ var getCompanyName = function(id,ticker){
         if (!error && response.statusCode == 200) {
             var markteJson = JSON.parse(body);
             var companyName = markteJson.query.results.quote.Name;
-            /*_sharePrice = markteJson.query.results.quote.LastTradePriceOnly;
-            _marketCapString =
+            var sharePrice = markteJson.query.results.quote.LastTradePriceOnly;
+            var marketCapString =
                 markteJson.query.results.quote.MarketCapitalization;
-            _marketCap = convertMarketCap(_marketCapString);*/
-            send_response(id,companyName);
+            var marketCap = convertMarketCap(_marketCapString);
+            var result = "Key numbers for " + companyName + "- \n" +
+                "Current Price: " + sharePrice + "\n" +
+                "Market Cap: " + marketCap;
+            send_response(id,result);
         }
         else {
             //console.log(error) // Print the shortened url.
@@ -58,3 +61,31 @@ function send_response(id,respond_message){
       }
     })
 }
+
+var convertMarketCap = function(value){
+    if(value == null) return 0;
+    var decimalValue = parseString(value.substring(0, value.length - 1));
+    if(value.slice(-1) == 'M'){
+        return (decimalValue*1.0e+6);
+    }
+    else return (decimalValue*(1.0e+9));
+};
+
+var parseString = function(value){
+    var isPositive = true;
+    var temp = value;
+    if(value.indexOf('(') !== -1)
+    {
+        temp = temp.substring(1, value.length - 1);
+        isPositive = false;
+    }
+    temp = temp.replace(/,/g, "");
+    temp = temp.replace(/-/g, "0");
+    if(isPositive){
+        temp = parseFloat(temp);
+    }
+    else{
+        temp = -1*parseFloat(temp);
+    }
+    return temp;
+};
