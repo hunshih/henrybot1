@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var request = require('request');
 var bodyParser = require('body-parser')
+var content = require('./content');
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -68,7 +69,7 @@ function postRequest(input) {
   json: { "recipient": 
         { "id": input },
      "message":
-        { "text": "Hey Keanu :3"}
+        { "text": content.ResponseMessage}
     }
 };
     request(options, function (error, response, body) {
