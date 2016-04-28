@@ -49,7 +49,7 @@ function getRatios(id, ticker, result){
             var ratioJson = JSON.parse(body);
             var peRatio = ratioJson.results[0].pe;
             var earningYield = (1/peRatio).toPrecision(3);
-            earningYield = (_earningYield*100).toPrecision(3);
+            earningYield = (earningYield*100).toPrecision(3);
             var operationMargin = ratioJson.results[0].operationmargin;
             var priceBook = ratioJson.results[0].pbook;
             var payoutRatio = ratioJson.results[0].payout;
