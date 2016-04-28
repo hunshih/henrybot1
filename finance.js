@@ -46,7 +46,7 @@ var getCompanyName = function(id,ticker){
 function getRatios(id, ticker, result){
     request(queryRatios(ticker), function (error, response, body) {
         if (!error && response.statusCode == 200) {
-            var ratioJson = JSON.parse(xhttp8.responseText);
+            var ratioJson = JSON.parse(body);
             var peRatio = ratioJson.results[0].pe;
             var earningYield = (1/peRatio).toPrecision(3);
             earningYield = (_earningYield*100).toPrecision(3);
