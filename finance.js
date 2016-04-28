@@ -23,7 +23,7 @@ var getCompanyName = function(id,ticker){
     console.log('Ticker is: ' + ticker);
 
     request(getMarketCap(ticker), function (error, response, body) {
-        if (!error && response.statusCode == 200) {
+        if (!error && response.statusCode == 200 && body) {
             var markteJson = JSON.parse(body);
             var companyName = markteJson.query.results.quote.Name;
             var sharePrice = markteJson.query.results.quote.LastTradePriceOnly;
