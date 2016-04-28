@@ -55,10 +55,10 @@ function getRatios(id, ticker, result){
             var payoutRatio = ratioJson.results[0].payout;
             
             result += "\nP/E Ratio: " + peRatio +
-                "\nYield: " + earningYield +
-                "\nOperating Margin: " + operationMargin +
+                "\nYield: " + earningYield + "%" +
+                "\nOperating Margin: " + operationMargin + "%" +
                 "\nPrice/Book: " + priceBook +
-                "\nPayout Ratio: " + payoutRatio;
+                "\nPayout Ratio: " + payoutRatio + "%";
             //send facebook user response!
             send_response(id,result);
         }
