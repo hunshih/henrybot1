@@ -26,6 +26,9 @@ var getCompanyName = function(id,ticker){
         if (!error && response.statusCode == 200 && body) {
             var markteJson = JSON.parse(body);
             var companyName = markteJson.query.results.quote.Name;
+            if(!companyName){
+                send_bad_response(id, ticker);
+            }
             var sharePrice = markteJson.query.results.quote.LastTradePriceOnly;
             var marketCapString =
                 markteJson.query.results.quote.MarketCapitalization;
@@ -38,8 +41,7 @@ var getCompanyName = function(id,ticker){
         else {
             //console.log(error) // Print the shortened url.
             console.log('failure retrieve company name');
-            var error_response = ticker + "?? Sorry man don't know what you're talkin about."
-            send_response(id,error_response);
+            send_bad_response(id, ticker);
         }
       
     });
@@ -67,6 +69,7 @@ function getRatios(id, ticker, result){
         else {
             //console.log(error) // Print the shortened url.
             console.log('failure load ratios');
+            send_bad_response(id, ticker);
         }
     });
 }
@@ -79,10 +82,10 @@ function send_response(id,respond_message){
       method: 'POST',
       json: { "recipient": 
             { "id": id },
-      "message":
+            "message":
             { "text": respond_message}
-    }
-};
+        }
+    };
     request(options, function (error, response, body) {
       if (error) {
         //console.log(error) // Print the shortened url.
@@ -92,6 +95,11 @@ function send_response(id,respond_message){
         console.log(response) // Print the shortened url.
       }
     })
+}
+
+function send_bad_response(id, ticker){
+    var error_response = ticker + "?? Sorry man don't know what you're talkin about."
+    send_response(id,error_response);
 }
 
 var convertMarketCap = function(value){
