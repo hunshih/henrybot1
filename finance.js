@@ -38,6 +38,8 @@ var getCompanyName = function(id,ticker){
         else {
             //console.log(error) // Print the shortened url.
             console.log('failure retrieve company name');
+            var error_response = ticker + "?? Sorry man don't know what you're talkin about."
+            send_response(id,error_response);
         }
       
     });
