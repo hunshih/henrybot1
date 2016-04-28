@@ -26,9 +26,9 @@ var getCompanyName = function(id,ticker){
             var marketCapString =
                 markteJson.query.results.quote.MarketCapitalization;
             var marketCap = convertMarketCap(marketCapString);
-            var result = "Key numbers for " + companyName + "- \n" +
-                "Current Price: " + sharePrice + "\n" +
-                "Market Cap: " + marketCap;
+            var result = companyName + "- \n" +
+                "Current Price: $" + sharePrice + "\n" +
+                "Market Cap: " + marketCapString;
             send_response(id,result);
         }
         else {
