@@ -15,7 +15,7 @@ var getMarketCap = function(symbol){
     return "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22" + symbol + "%22)&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=";
 }
 
-var getRatios = function(symbol){
+var queryRatios = function(symbol){
     return "https://api.import.io/store/data/d53a442a-94ef-45b8-acd7-d2bcac37b007/_query?input/webpage/url=http%3A%2F%2Ffinance.yahoo.com%2Fq%2Fks%3Fs%3D" + symbol + "%2BKey%2BStatistics&_user=bebd3907-23ed-45f5-86f5-69e5b8a4c9e7&_apikey=bebd3907-23ed-45f5-86f5-69e5b8a4c9e7%3A8DLVNS8YsLcDmGnMp3Ne9XK4oWk30YKsoZRG8KWRUyXzPFCqYPlKBGHSE5rm1%2Bd121AIN8eZU6TQZIXwrkqenA%3D%3D"
 }
 
@@ -33,7 +33,7 @@ var getCompanyName = function(id,ticker){
             var result = companyName + "-" +
                 "\nCurrent Price: $" + sharePrice +
                 "\nMarket Cap: " + marketCapString;
-
+            getRatios(id,ticker, result);
         }
         else {
             //console.log(error) // Print the shortened url.
@@ -44,7 +44,7 @@ var getCompanyName = function(id,ticker){
 }
 
 function getRatios(id, ticker, result){
-    request(getRatios(ticker), function (error, response, body) {
+    request(queryRatios(ticker), function (error, response, body) {
         if (!error && response.statusCode == 200) {
             var ratioJson = JSON.parse(xhttp8.responseText);
             var peRatio = ratioJson.results[0].pe;
