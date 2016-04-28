@@ -21,11 +21,12 @@ var getCompanyName = function(id,ticker){
     request(getMarketCap(ticker), function (error, response, body) {
         if (!error && response.statusCode == 200) {
             var markteJson = JSON.parse(body);
-            /*_companyName = markteJson.query.results.quote.Name;
-            _sharePrice = markteJson.query.results.quote.LastTradePriceOnly;
+            var companyName = markteJson.query.results.quote.Name;
+            /*_sharePrice = markteJson.query.results.quote.LastTradePriceOnly;
             _marketCapString =
                 markteJson.query.results.quote.MarketCapitalization;
             _marketCap = convertMarketCap(_marketCapString);*/
+            send_response(id,companyName);
         }
         else {
             //console.log(error) // Print the shortened url.
