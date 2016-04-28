@@ -28,6 +28,7 @@ var getCompanyName = function(id,ticker){
             var companyName = markteJson.query.results.quote.Name;
             if(!companyName){
                 send_bad_response(id, ticker);
+                return;//this is important! otherwise you pass empty value down
             }
             var sharePrice = markteJson.query.results.quote.LastTradePriceOnly;
             var marketCapString =
