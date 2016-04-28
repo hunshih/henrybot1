@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var request = require('request');
 var bodyParser = require('body-parser')
-var content = require('./content');
+var finance = require('./finance');
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -33,11 +33,11 @@ app.post('/webhook', function(req, res) {
     //var msg = JSON.parse(req);
     //console.log(msg.entry.messaging.message.text);
     if(req.body.entry[0].messaging[0].message){
-        console.log('message received: ' +  
-                    req.body.entry[0].messaging[0].message.text);  
+        var ticker = req.body.entry[0].messaging[0].message.text;
         var sender = req.body.entry[0].messaging[0].sender.id;
+        console.log('message received: ' + ticker); 
         console.log('sender: ' + sender);
-        postRequest(sender);
+        finance.ResponseMessage(input,ticker);
     }
     else{
         console.log("No Message!");
@@ -58,27 +58,3 @@ app.get('/get', function(req, res) {
 app.post('/testingpost', function(req, res) {
     res.send(req.body.entry[0].messaging[0].message.text);
 });
-
-function postRequest(input) {
-    console.log('id is: ' + input);
-    var postAddress = 'https://graph.facebook.com/v2.6/me/messages?access_token=' + token;
-
-    var options = {
-  uri: postAddress,
-  method: 'POST',
-  json: { "recipient": 
-        { "id": input },
-     "message":
-        { "text": content.ResponseMessage()}
-    }
-};
-    request(options, function (error, response, body) {
-      if (error) {
-        //console.log(error) // Print the shortened url.
-          console.log('failure to send to clients');
-      }
-        if (response) {
-        console.log(response) // Print the shortened url.
-      }
-    })
-}
