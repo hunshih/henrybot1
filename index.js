@@ -37,7 +37,7 @@ app.post('/webhook', function(req, res) {
         var sender = req.body.entry[0].messaging[0].sender.id;
         console.log('message received: ' + ticker); 
         console.log('sender: ' + sender);
-        finance.ResponseMessage(input,ticker);
+        finance.ResponseMessage(sender,ticker);
     }
     else{
         console.log("No Message!");
