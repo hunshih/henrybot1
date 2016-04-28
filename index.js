@@ -32,12 +32,14 @@ app.post('/webhook', function(req, res) {
     //var msg = JSON.parse(req);
     //console.log(msg.entry.messaging.message.text);
     if(req.body.entry[0].messaging[0].message){
-        console.log(req.body.entry[0].messaging[0].message.text);  
+        console.log('message received: ' +  
+                    req.body.entry[0].messaging[0].message.text);  
         var sender = req.body.entry[0].messaging[0].sender.id;
+        console.log('sender: ' + sender);
         postRequest(sender);
     }
     else{
-        console.log("It's somethin else");
+        console.log("No Message!");
     }
     res.send("done");
     //console.log("Testing");
@@ -71,10 +73,11 @@ function postRequest(input) {
 };
     request(options, function (error, response, body) {
       if (error) {
-        console.log(error) // Print the shortened url.
+        //console.log(error) // Print the shortened url.
+          console.log('failure to send to clients');
       }
         if (response) {
-        console.log(response) // Print the shortened url.
+        //console.log(response) // Print the shortened url.
       }
     })
 }
