@@ -69,7 +69,7 @@ function postRequest(input) {
   json: { "recipient": 
         { "id": input },
      "message":
-        { "text": content.ResponseMessage}
+        { "text": content.ResponseMessage()}
     }
 };
     request(options, function (error, response, body) {
