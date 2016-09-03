@@ -34,9 +34,15 @@ var getCompanyName = function(id,ticker){
             var marketCapString =
                 markteJson.query.results.quote.MarketCapitalization;
             var marketCap = convertMarketCap(marketCapString);
+            var peRatio = markteJson.query.results.quote.PERatio;
+            var priceBook = markteJson.query.results.quote.PriceBook;
+            var divYield = markteJson.query.results.quote.DividendYield;
             var result = companyName + "-" +
                 "\nCurrent Price: $" + sharePrice +
-                "\nMarket Cap: " + marketCapString;
+                "\nMarket Cap: " + marketCapString +
+                "\nP/E Ratio: " + peRatio +
+                "\nP/B Ratio: " + priceBook +
+                "\nYield: " + divYield;
             //getRatios(id,ticker, result);
             send_response(id,result);
         }
@@ -46,33 +52,6 @@ var getCompanyName = function(id,ticker){
             send_bad_response(id, ticker);
         }
       
-    });
-}
-
-function getRatios(id, ticker, result){
-    request(queryRatios(ticker), function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-            var ratioJson = JSON.parse(body);
-            var peRatio = ratioJson.results[0].pe;
-            var earningYield = (1/peRatio).toPrecision(3);
-            earningYield = (earningYield*100).toPrecision(3);
-            var operationMargin = ratioJson.results[0].operationmargin;
-            var priceBook = ratioJson.results[0].pbook;
-            var payoutRatio = ratioJson.results[0].payout;
-            
-            result += "\nP/E Ratio: " + peRatio +
-                "\nYield: " + earningYield + "%" +
-                "\nOperating Margin: " + operationMargin + "%" +
-                "\nPrice/Book: " + priceBook +
-                "\nPayout Ratio: " + payoutRatio + "%";
-            //send facebook user response!
-            send_response(id,result);
-        }
-        else {
-            //console.log(error) // Print the shortened url.
-            console.log('failure load ratios');
-            send_bad_response(id, ticker);
-        }
     });
 }
 
