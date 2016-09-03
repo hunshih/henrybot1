@@ -38,6 +38,7 @@ var getCompanyName = function(id,ticker){
                 "\nCurrent Price: $" + sharePrice +
                 "\nMarket Cap: " + marketCapString;
             //getRatios(id,ticker, result);
+            send_response(id,result);
         }
         else {
             //console.log(error) // Print the shortened url.
